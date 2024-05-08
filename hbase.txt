@@ -1,0 +1,47 @@
+sudo service hbase-master start
+sudo srevice hbase-regionserver start
+
+hbase shell
+
+create 'table_name','col_1','col_2'
+
+list        #list of table
+
+scan 'employee'
+
+put 'employee','1','personal:name','sam'
+put 'employee','1','personal:age','30'
+put 'employee','1','professional:salary','10000'
+put 'employee','1','professional:dept','BigData'
+
+=>{
+	'personal':{
+		'name':'sam'
+		'age':'30'
+	}
+	professional:{
+		'salary':'10000'
+		'dept':'BigData'
+	}
+}
+
+
+sacn 'employee'
+
+
+
+hive:
+
+create external table employee_hbase(key string,name string,age string,salary string,dept string)
+STORED by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping"=":key,personal:name,personal:age,profesional:dept,profesional:salary")
+tblproperties("habse.table.name"="employee");
+
+
+insert into table emplyoyee_habase value("","","","");
+select * from employee_hbase;
+
+
+
+
+
