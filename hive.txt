@@ -1,0 +1,86 @@
+start-dfs.sh
+start-yarn.sh
+jps
+
+hive
+
+show databases;
+create database demo;
+use demo
+create table student(name string,rollno int,dept string)
+	row format delimited
+	field terminated by ',';
+
+load data local inpath '/home/hadoop/desktop//path' into table student ;
+
+
+drop table student;
+
+select * from student;
+
+can import multiple files
+
+describe student;   #half meta data
+
+describe extended student;
+
+internal table = manage table
+extrenal table 
+
+
+in terminal :
+hdfs dfs -mkdir /Hivedata
+hdfs dfs -put "file path" /Hivedata
+check on localhost
+
+
+
+hdfs files to hive 
+
+
+create table student_1(name string,roll_no int)
+	row format delimited
+	field terminated by ',';
+
+load data inpath '/Hivedata/student' into table student_1;
+
+
+create external table student_1(name string,roll_no int)
+	row format delimited
+	field terminated by ','
+	location '/HiveData';   external table
+
+drop table student;
+drop database demo;
+
+
+when we drop external table it only drops its meta data not data
+internal drop everything
+
+
+select count(*) from table_name;
+
+
+alter table tabel_name rename to tabel_name_1
+
+show table
+
+insert into table flight_info values("","","");
+
+alter table add columns(cancelled BOOLEAN);
+
+select avg(dep_deplay) AS avarage from table_name where dep_time=2008
+
+
+
+
+
+
+
+
+
+
+
+
+
+
